@@ -1,0 +1,464 @@
+:root {
+    --color-white: #ffffff;
+    --color-off-white: #dcddde;
+    --color-light-gray: #8e9297;
+    --color-dark-gray: #2f3136;
+    --color-darker-gray: #202225;
+    --color-background: #36393f;
+    --color-input-background: #40444b;
+    --color-input-focus: #2f3136;
+    --color-accent: #5865f2;
+    --color-accent-hover: #4752c4;
+    --color-danger: #ed4245;
+    --color-danger-hover: #d5383b;
+    --color-hover-background: #32353b;
+    --color-menu-background: #18191c;
+    --color-shadow: rgba(0, 0, 0, 0.2);
+    --color-shadow-heavy: rgba(0, 0, 0, 0.3);
+    --color-shadow-heavier: rgba(0, 0, 0, 0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-white);
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+    /* Odstraněno: user-select: none; - Už neblokujeme označování globálně */
+}
+
+/* Sidebars */
+.sidebar, .right-panel {
+    width: 240px;
+    background-color: var(--color-dark-gray);
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    height: 100%;
+    z-index: 10;
+    transition: transform 0.3s ease;
+    user-select: none; /* Zakázat označování textu v bočních panelech */
+}
+
+.sidebar {
+    left: 0;
+    box-shadow: 5px 0 10px var(--color-shadow);
+}
+
+.right-panel {
+    right: 0;
+    box-shadow: -5px 0 10px var(--color-shadow);
+}
+
+.sidebar-hidden .sidebar {
+    transform: translateX(-100%);
+}
+
+.right-panel-hidden .right-panel {
+    transform: translateX(100%);
+}
+
+.sidebar-title {
+    padding: 16px;
+    margin: 0;
+    border-bottom: 1px solid var(--color-darker-gray);
+    font-size: 16px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+}
+
+.new-chat-button {
+    width: calc(100% - 32px);
+    margin: 8px 16px;
+    padding: 10px;
+    background: var(--color-accent);
+    border: none;
+    border-radius: 4px;
+    color: var(--color-white);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.new-chat-button:hover {
+    background: var(--color-accent-hover);
+}
+
+.section-header {
+    padding: 8px 16px;
+    color: var(--color-light-gray);
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-top: 8px;
+}
+
+/* Channel and Member Lists */
+.channel-list, .member-list {
+    list-style: none;
+    padding: 0 16px;
+}
+
+.channel-item, .member-item {
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s;
+}
+
+.channel-item:hover, .member-item:hover {
+    background-color: var(--color-background);
+}
+
+/* Main Chat Area */
+.main-chat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 0 240px;
+    transition: margin 0.3s ease;
+    position: relative;
+}
+
+.sidebar-hidden .main-chat {
+    margin-left: 0;
+}
+
+.right-panel-hidden .main-chat {
+    margin-right: 0;
+}
+
+.chat-header {
+    padding: 0 16px;
+    border-bottom: 1px solid var(--color-darker-gray);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    user-select: none; /* Zakázat označování textu v hlavičce */
+}
+
+.toggle-button {
+    cursor: pointer;
+    margin-right: 10px;
+    width: 24px;
+    height: 24px;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    gap: 10px;
+}
+
+.toggle-right-panel {
+    margin-left: 10px;
+}
+
+.messages {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.message {
+    display: flex;
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.message:hover {
+    background-color: var(--color-hover-background);
+}
+
+.message-avatar {
+    margin-right: 16px;
+    flex-shrink: 0;
+    user-select: none; /* Zakázat označování textu pro avatary */
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    overflow: hidden;
+    user-select: none; /* Zakázat označování textu pro avatary */
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.avatar.large {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 16px;
+}
+
+.message-body {
+    flex: 1;
+}
+
+.message-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.message-username {
+    font-weight: bold;
+    margin-right: 8px;
+    user-select: none; /* Zakázat označování textu pro uživatelská jména */
+}
+
+.message-time {
+    font-size: 0.8em;
+    color: var(--color-light-gray);
+    user-select: none; /* Zakázat označování textu pro časové údaje */
+}
+
+.message-text {
+    color: var(--color-white);
+    word-wrap: break-word;
+    user-select: text; /* Povolit označování textu zpráv */
+}
+
+/* Input Area */
+.message-input {
+    background-color: var(--color-input-background);
+    position: relative;
+    box-shadow: 0 -2px 10px var(--color-shadow);
+    transition: all 0.3s ease;
+}
+
+.message-input:focus-within {
+    background-color: var(--color-input-background);
+    box-shadow: 0 -5px 15px var(--color-shadow);
+    padding-top: 48px;
+}
+
+.input-extended-options {
+    position: absolute;
+    top: 6px;
+    left: 16px;
+    right: 16px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 8px;
+    user-select: none; /* Zakázat označování textu pro rozšířené možnosti */
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+}
+
+.message-input:focus-within .input-extended-options {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+/* Postupné zviditelňování tlačítek */
+.input-extended-options .icon-button {
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s;
+}
+
+.message-input:focus-within .input-extended-options .icon-button {
+    opacity: 0.7;
+    transform: translateY(0);
+}
+
+/* Postupné zpoždění animace pro každé tlačítko */
+.input-extended-options .icon-button:nth-child(1) { transition-delay: 0.0s; }
+.input-extended-options .icon-button:nth-child(2) { transition-delay: 0.02s; }
+.input-extended-options .icon-button:nth-child(3) { transition-delay: 0.04s; }
+.input-extended-options .icon-button:nth-child(4) { transition-delay: 0.06s; }
+.input-extended-options .icon-button:nth-child(5) { transition-delay: 0.08s; }
+.input-extended-options .separator { 
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    transition-delay: 0.1s;
+}
+.input-extended-options .icon-button:nth-child(7) { transition-delay: 0.12s; }
+.input-extended-options .icon-button:nth-child(8) { transition-delay: 0.14s; }
+.input-extended-options .icon-button:nth-child(9) { transition-delay: 0.16s; }
+.input-extended-options .extended-options-right .icon-button { transition-delay: 0.18s; }
+
+.message-input:focus-within .input-extended-options .separator {
+    opacity: 1;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none; /* Zakázat označování textu pro tlačítka */
+}
+
+.icon-button:hover {
+    opacity: 1;
+}
+
+.icon-button img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+}
+
+.separator {
+    width: 2px;
+    height: 24px;
+    background-color: var(--color-light-gray);
+    margin: 0 6px;
+    border-radius: 2px;
+    user-select: none; /* Zakázat označování textu pro oddělovače */
+}
+
+.extended-options-right {
+    margin-left: auto;
+}
+
+.input-container {
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    background-color: var(--color-input-background);
+}
+
+.message-input-field {
+    flex: 1;
+    background: var(--color-background);
+    border: none;
+    color: var(--color-white);
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: background 0.2s;
+    user-select: text; /* Povolit označování textu v poli pro vstup */
+}
+
+.message-input-field:focus {
+    background: var(--color-input-focus);
+    outline: none;
+}
+
+.send-button {
+    background: var(--color-accent);
+    border: none;
+    color: var(--color-white);
+    padding: 8px;
+    min-width: 40px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+    user-select: none; /* Zakázat označování textu pro tlačítko odeslání */
+}
+
+.send-button:hover {
+    background: var(--color-accent-hover);
+}
+
+.send-button img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+}
+
+/* Context Menu */
+.context-menu {
+    position: fixed;
+    background: var(--color-menu-background);
+    border-radius: 4px;
+    box-shadow: 0 8px 16px var(--color-shadow-heavy);
+    display: none;
+    z-index: 1000;
+    user-select: none; /* Zakázat označování textu pro kontextové menu */
+}
+
+.context-menu-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--color-off-white);
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.context-menu-item:hover {
+    background: var(--color-dark-gray);
+    color: var(--color-white);
+}
+
+.context-menu-item img {
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+}
+
+/* Profile Modal */
+.profile-modal {
+    display: none;
+    position: fixed;
+    background: var(--color-menu-background);
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    z-index: 1001;
+    box-shadow: 0 8px 24px var(--color-shadow-heavier);
+    text-align: center;
+    user-select: none; /* Zakázat označování textu pro modální okno profilu */
+}
+
+.profile-name, .profile-username {
+    text-align: center;
+}
+
+.profile-username {
+    color: var(--color-off-white);
+    margin-bottom: 16px;
+}
+
+.profile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.block-button {
+    background: var(--color-danger);
+}
+
+.block-button:hover {
+    background: var(--color-danger-hover);
+}

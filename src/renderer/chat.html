@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord II. Veliký</title>
+    <link rel="icon" href="icons/logo.png" type="image/png">
+    <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+    <!-- Left Sidebar -->
+    <div class="sidebar">
+        <div class="channels">
+            <h2 class="sidebar-title">Messages</h2>
+            <button class="new-chat-button">+ New Chat</button>
+            
+            <div class="section-header">Channels</div>
+            <ul class="channel-list">
+                <li class="channel-item"># general</li>
+                <li class="channel-item"># random</li>
+            </ul>
+
+            <div class="section-header">Direct Messages</div>
+            <ul class="channel-list direct-messages">
+                <li class="channel-item" data-context="user" data-username="John Doe">
+                    <div class="avatar">
+                        <img src="profilepic/default.png" alt="JD">
+                    </div>
+                    John Doe
+                </li>
+                <li class="channel-item" data-context="user" data-username="Alice Smith">
+                    <div class="avatar">
+                        <img src="profilepic/default.png" alt="AS">
+                    </div>
+                    Alice Smith
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Chat Area -->
+    <div class="main-chat">
+        <div class="chat-header">
+            <img src="icons/icons8-message-100.png" alt="Toggle sidebar" class="toggle-button toggle-sidebar">
+            <h3># general</h3>
+            <div class="header-actions">
+                <button class="icon-button">
+                    <img src="icons/icons8-call-100.png" alt="Call">
+                </button>
+                <button class="icon-button">
+                    <img src="icons/icons8-video-call-100.png" alt="Video Call">
+                </button>
+                <button class="icon-button">
+                    <img src="icons/icons8-settings-100.png" alt="Settings">
+                </button>
+                <div class="separator"></div>
+                <img src="icons/icons8-members-100.png" alt="Toggle users" class="toggle-button toggle-right-panel">
+            </div>
+        </div>
+        
+        <div class="messages">
+            <div class="message" data-context="message">
+                <div class="message-avatar">
+                    <div class="avatar" data-username="John Doe">
+                        <img src="profilepic/default.png" alt="JD">
+                    </div>
+                </div>
+                <div class="message-body">
+                    <div class="message-header">
+                        <span class="message-username">John Doe</span>
+                        <span class="message-time">Today at 12:30 PM</span>
+                    </div>
+                    <div class="message-text">Hello everyone! How are you all doing today?</div>
+                </div>
+            </div>
+            <div class="message" data-context="message">
+                <div class="message-avatar">
+                    <div class="avatar" data-username="Alice Smith">
+                        <img src="profilepic/default.png" alt="AS">
+                    </div>
+                </div>
+                <div class="message-body">
+                    <div class="message-header">
+                        <span class="message-username">Alice Smith</span>
+                        <span class="message-time">Today at 12:35 PM</span>
+                    </div>
+                    <div class="message-text">Hi there! 👋 I'm doing great, thanks for asking! I'm working on a new project and it's going really well. How about you?</div>
+                </div>
+            </div>
+            <div class="message" data-context="message">
+                <div class="message-avatar">
+                    <div class="avatar" data-username="Bob Johnson">
+                        <img src="profilepic/default.png" alt="BJ">
+                    </div>
+                </div>
+                <div class="message-body">
+                    <div class="message-header">
+                        <span class="message-username">Bob Johnson</span>
+                        <span class="message-time">Today at 12:40 PM</span>
+                    </div>
+                    <div class="message-text">Just joined the channel. What are we talking about?</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Updated Message Input Section -->
+        <div class="message-input">
+            <div class="input-extended-options">
+                <button class="icon-button">
+                    <img src="icons/icons8-smile-100.png" alt="Emoji">
+                </button>
+                <button class="icon-button">
+                    <img src="icons/icons8-picture-100.png" alt="Insert Image">
+                </button>
+                <button class="icon-button">
+                    <img src="icons/icons8-attach-100.png" alt="Attach File">
+                </button>
+                <button class="icon-button">
+                    <img src="icons/icons8-mention-100.png" alt="Mention Someone">
+                </button>
+                <button class="icon-button">
+                    <img src="icons/icons8-link-100.png" alt="Insert Link">
+                </button>
+                <div class="separator"></div>
+                <button class="icon-button">
+                    <img src="icons/icons8-bold-100.png" alt="Bold">
+                </button>
+                <button class="icon-button">
+                    <img src="icons/icons8-italic-100.png" alt="Italic">
+                </button>
+                <button class="icon-button">
+                    <img src="icons/icons8-underline-100.png" alt="Underline">
+                </button>
+                <div class="extended-options-right">
+                    <button class="icon-button">
+                        <img src="icons/icons8-voice-message-100.png" alt="Voice Message">
+                    </button>
+                </div>
+            </div>
+            <div class="input-container">
+                <input type="text" class="message-input-field" placeholder="Type your message...">
+                <button class="send-button">
+                    <img src="icons/icons8-send-100.png" alt="Send">
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="right-panel">
+        <h3 class="sidebar-title">Members</h3>
+        <div class="section-header">Online</div>
+        <ul class="member-list" id="onlineMembers"></ul>
+        
+        <div class="section-header">Offline</div>
+        <ul class="member-list" id="offlineMembers"></ul>
+    </div>
+
+    <!-- Context Menu -->
+    <div class="context-menu" id="contextMenu"></div>
+
+    <!-- Profile Modal -->
+    <div class="profile-modal" id="profileModal">
+        <div class="avatar large">
+            <img src="profilepic/default.png" alt="User">
+        </div>
+        <h3 class="profile-name">John Doe</h3>
+        <div class="profile-username">@john_doe</div>
+        <div class="profile-actions">
+            <button class="send-button profile-action">Send Message</button>
+            <button class="send-button block-button">Block User</button>
+        </div>
+    </div>
+
+    <script src="ui.js"></script>
+</body>
+</html>
