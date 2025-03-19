@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
             li.dataset.username = user.name;
             li.innerHTML = `
                 <div class="avatar">
-                    <img src="profilepic/default.png" alt="${user.name[0]}">
+                    <img src="../../public/profilepic/default.png" alt="${user.name[0]}">
                 </div>
                 <div>
                     <div>${user.name}</div>
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const icon = icons[type][action];
             return `
                 <div class="context-menu-item" data-action="${action}">
-                    <img src="icons/${icon}" alt="${item}">
+                    <img src="../../public/icons/${icon}" alt="${item}">
                     ${item}
                 </div>
             `;
