@@ -1,0 +1,4 @@
+scrollovani sidebaru - oproti sekci zprav mene vyrazny scrollbar
+zalamovani dlouhych zprav - i ty ktere nelze rozdelit podle slov
+lokalni databaze zprav a uzivatelu, inicializace a realtime aktualizace
+kontextove menu nemusi vzdy zobrazit vsechny polozky - napr nebude moznost upravit zpravu ktera neni moje

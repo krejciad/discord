@@ -23,15 +23,15 @@ class ContextMenu {
             user: {
                 'message': 'icons8-message-100.png',
                 'block': 'icons8-block-100.png',
-                'report': 'icons8-report-100.png',
-                'view_profile': 'icons8-profile-100.png'
+                'remove': 'icons8-broken-heart-100.png',
+                'profile': 'icons8-profile-100.png'
             }
         };
         
         // Definice položek pro jednotlivé typy menu
         this.menuItems = {
             message: ['Reply', 'Edit', 'Delete', 'Share'],
-            user: ['Message', 'Block', 'Report', 'View Profile']
+            user: ['Message', 'Block', 'Remove', 'Profile']
         };
     }
     
@@ -150,13 +150,118 @@ class ContextMenu {
      * @param {Event} event - Událost, která akci vyvolala
      */
     handleMenuAction(action, username, event) {
-        if (action === 'view_profile' && username) {
-            ProfileModal.showUserProfile(username, event.clientX, event.clientY);
-        } else {
-            console.log(`${action} action triggered on ${this.currentContextType} for ${username}`);
+        // Zpracování jednotlivých akcí podle jejich typu
+        switch (action) {
+            case 'profile':
+                this.handleProfileAction(username, event);
+                break;
+            case 'message':
+                // Připraveno pro implementaci funkce odeslání zprávy
+                this.handleMessageAction(username);
+                break;
+            case 'block':
+                // Připraveno pro implementaci funkce blokování uživatele
+                this.handleBlockAction(username);
+                break;
+            case 'remove':
+                // Připraveno pro implementaci funkce nahlášení uživatele
+                this.handleRemoveAction(username);
+                break;
+            case 'reply':
+                // Připraveno pro implementaci funkce odpovědi na zprávu
+                this.handleReplyAction();
+                break;
+            case 'edit':
+                // Připraveno pro implementaci funkce úpravy zprávy
+                this.handleEditAction();
+                break;
+            case 'delete':
+                // Připraveno pro implementaci funkce smazání zprávy
+                this.handleDeleteAction();
+                break;
+            case 'share':
+                // Připraveno pro implementaci funkce sdílení zprávy
+                this.handleShareAction();
+                break;
+            default:
+                console.log(`${action} action triggered on ${this.currentContextType} for ${username}`);
         }
         
         this.hideContextMenu();
+    }
+
+    /**
+     * Metoda pro obsluhu akce zobrazení profilu
+     * @param {string} username - Uživatelské jméno
+     * @param {Event} event - Událost, která akci vyvolala
+     */
+    handleProfileAction(username, event) {
+        console.log(`Zobrazení profilu uživatele: ${username}`);
+        // Implementace funkcionality zobrazení zprávy
+        if (username) {
+            // Použití ProfileModal pro zobrazení profilu uživatele
+            ProfileModal.showUserProfile(username, event.clientX, event.clientY);
+            console.log(`-Zobrazeno: ${username}`);
+        }
+    }
+    
+    /**
+     * Metoda pro obsluhu akce odeslání zprávy
+     * @param {string} username - Uživatelské jméno
+     */
+    handleMessageAction(username) {
+        console.log(`Odesílání zprávy uživateli: ${username}`);
+        // Implementace funkcionality odeslání zprávy
+    }
+    
+    /**
+     * Metoda pro obsluhu akce blokování uživatele
+     * @param {string} username - Uživatelské jméno
+     */
+    handleBlockAction(username) {
+        console.log(`Blokování uživatele: ${username}`);
+        // Implementace funkcionality blokování uživatele
+    }
+    
+    /**
+     * Metoda pro obsluhu akce nahlášení uživatele
+     * @param {string} username - Uživatelské jméno
+     */
+    handleRemoveAction(username) {
+        console.log(`Odstranění uživatele: ${username}`);
+        // Implementace funkcionality nahlášení uživatele
+    }
+    
+    /**
+     * Metoda pro obsluhu akce odpovědi na zprávu
+     */
+    handleReplyAction() {
+        console.log('Odpověď na zprávu');
+        // Implementace funkcionality odpovědi na zprávu
+    }
+    
+    /**
+     * Metoda pro obsluhu akce úpravy zprávy
+     */
+    handleEditAction() {
+        console.log('Úprava zprávy');
+        // Implementace funkcionality úpravy zprávy
+    }
+    
+    /**
+     * Metoda pro obsluhu akce smazání zprávy
+     */
+    handleDeleteAction() {
+        console.log('Smazání zprávy');
+        // Implementace funkcionality smazání zprávy
+    }
+    
+    /**
+     * Metoda pro obsluhu akce sdílení zprávy
+     */
+    handleShareAction() {
+        console.log('Sdílení zprávy');
+        // Implementace funkcionality sdílení zprávy
     }
 }
 

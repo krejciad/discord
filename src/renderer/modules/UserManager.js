@@ -6,7 +6,9 @@
 const users = [
     { name: "John Doe", status: "online", username: "@john_doe" },
     { name: "Alice Smith", status: "offline", username: "@alice_smith" },
-    { name: "Bob Johnson", status: "online", username: "@bob_j" }
+    { name: "Bob Johnson", status: "online", username: "@bob_j" },
+    { name: "Skibidi Sigma", status: "online", username: "@skibidak007" },
+    { name: "Andrej Babiš", status: "offline", username: "@sasek_11" }
 ];
 
 /**
