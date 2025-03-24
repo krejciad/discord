@@ -1,4 +1,24 @@
-scrollovani sidebaru - oproti sekci zprav mene vyrazny scrollbar
-zalamovani dlouhych zprav - i ty ktere nelze rozdelit podle slov
+  --scrollovani sidebaru - oproti sekci zprav mene vyrazny scrollbar
+  --zalamovani dlouhych zprav - i ty ktere nelze rozdelit podle slov
 lokalni databaze zprav a uzivatelu, inicializace a realtime aktualizace
 kontextove menu nemusi vzdy zobrazit vsechny polozky - napr nebude moznost upravit zpravu ktera neni moje
+try/catch prevence errorů, validace akcí a objektů
+relativní cesty k assetům - moznosti customizace
+podpora language packů, lokalizace - format casu...
+implementovat podporu barevnych schemat
+rozsirovat textove pole na vice radku u dlouhych zprav, zalamovat
+system formatovani zprav pomoci priznaku
+detekce a implementace linku ve zprave
+zobrazovani priloh a obrazku ve zprave
+menu emotikonu
+stranka nastaveni
+stranka hovoru a videohovoru
+design pro hlasove zpravy
+podbarveni mych zprav, a zprav se zminkou
+pridat vyhledavaci pole v kontaktech, tlacitko pro novy chat pouze ikonka
+implementovat tooltipy
+fly-in animace pro pop-up moduly
+omezit velikost kB profilovek pro setreni mista na disku
+  --oznaceni otevreneho chatu v seznamu kontaktu
+
+pridat easter egg - andrej babis bot @sasek_54, bude na kazdou zpravu odpovidat "Ne, nebude lip!"

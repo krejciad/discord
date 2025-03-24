@@ -39,16 +39,30 @@ function initApp() {
 function setupChannelInteractions() {
     document.querySelectorAll('.channel-item').forEach(channel => {
         channel.addEventListener('click', () => {
+            // Odstranit aktivní stav ze všech kanálů
+            document.querySelectorAll('.channel-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Přidat aktivní stav aktuálnímu kanálu
+            channel.classList.add('active');
+            
             const channelName = channel.textContent.trim();
             MessageManager.changeChannel(channelName);
             
-            // Aktualizace zobrazovaného názvu kanálu
+            // Aktualizace hlavičky
             const channelHeader = document.querySelector('.chat-header h3');
             if (channelHeader) {
                 channelHeader.textContent = channelName;
             }
         });
     });
+    
+    // Nastavit výchozí aktivní kanál
+    const defaultChannel = document.querySelector('.channel-item:first-child');
+    if (defaultChannel) {
+        defaultChannel.classList.add('active');
+    }
 }
 
 // Čekat na načtení DOM před inicializací aplikace
